@@ -320,12 +320,13 @@ button {
   bottom: 1.25rem;
   z-index: 90;
   transform: translateX(-50%);
-  padding: 0.65rem 1rem;
+  padding: 0.48rem 0.78rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.34);
   background: rgba(43, 71, 93, 0.58);
-  color: #f7fbff;
-  font-size: 0.95rem;
+  color: rgba(247, 251, 255, 0.78);
+  font-size: 0.78rem;
+  font-weight: 400;
   box-shadow: 0 10px 24px rgba(15, 34, 49, 0.18);
   backdrop-filter: blur(10px);
 }
@@ -399,20 +400,26 @@ button {
 
 .modal-close {
   position: absolute;
-  top: 1.3rem;
-  right: 1.35rem;
-  width: 32px;
-  height: 32px;
-  border: 0;
-  background: transparent;
+  top: 0.9rem;
+  right: 0.9rem;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(170, 168, 164, 0.28);
+  border-radius: 50%;
+  background: rgba(252, 251, 247, 0.9);
   color: #aaa8a4;
   font-family: Georgia, serif;
-  font-size: 2rem;
+  font-size: 1.9rem;
   line-height: 1;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  transition: color 0.14s ease, background 0.14s ease, border-color 0.14s ease;
 }
 
 .modal-close:hover {
   color: #6f6d69;
+  border-color: rgba(111, 109, 105, 0.3);
+  background: #fcfbf7;
 }
 
 .viewer-backdrop.open .modal {
@@ -442,7 +449,7 @@ button {
 
 .viewer-modal {
   width: min(520px, calc(100% - 2rem));
-  padding: 2rem;
+  padding: 3.4rem 2rem 2rem;
 }
 
 .viewer-photo {
@@ -588,7 +595,15 @@ button {
   }
 
   .viewer-modal {
-    padding: 1.75rem 1.25rem 1.35rem;
+    padding: 3.15rem 1.25rem 1.35rem;
+  }
+
+  .modal-close {
+    top: 0.7rem;
+    right: 0.7rem;
+    width: 34px;
+    height: 34px;
+    font-size: 1.75rem;
   }
 
   .board {
