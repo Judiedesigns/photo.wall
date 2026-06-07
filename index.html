@@ -88,7 +88,8 @@ button {
 .is-loading .page,
 .is-loading .quick-add,
 .is-loading .shuffle-btn,
-.is-loading .memory-counter {
+.is-loading .memory-counter,
+.is-loading .made-by {
   opacity: 0;
   pointer-events: none;
 }
@@ -352,6 +353,24 @@ button {
 .shuffle-btn:hover {
   transform: translateY(-2px);
   background: #fff;
+}
+
+.made-by {
+  position: fixed;
+  right: clamp(1rem, 4vw, 2rem);
+  bottom: clamp(1rem, 4vw, 2rem);
+  z-index: 120;
+  color: rgba(247, 251, 255, 0.72);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.78rem;
+  text-decoration: none;
+  text-shadow: 0 2px 10px rgba(15, 34, 49, 0.35);
+  transition: color 0.14s ease, opacity 0.14s ease;
+}
+
+.made-by:hover,
+.made-by:focus-visible {
+  color: #fff;
 }
 
 .viewer-backdrop,
@@ -660,6 +679,12 @@ button {
     min-height: 42px;
     padding: 0 0.9rem;
   }
+
+  .made-by {
+    right: 1rem;
+    bottom: 1.7rem;
+    font-size: 0.72rem;
+  }
 }
 </style>
 </head>
@@ -697,6 +722,7 @@ button {
 
 <button class="shuffle-btn" id="shuffle-btn" type="button" hidden>Shuffle</button>
 <div class="memory-counter" id="memory-counter" hidden></div>
+<a class="made-by" href="https://vibe-coding.vercel.app/" target="_blank" rel="noopener noreferrer">Made by Mars</a>
 
 <div class="viewer-backdrop" id="viewer-backdrop" aria-hidden="true">
   <div class="modal viewer-modal" role="dialog" aria-modal="true" aria-labelledby="viewer-title">
