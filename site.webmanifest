@@ -1,0 +1,16 @@
+{
+  "name": "Hang Your Favorite Photos",
+  "short_name": "Photo Wall",
+  "description": "A private local photo wall for saving favorite moments as polaroids.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#9fc8de",
+  "theme_color": "#4d7f43",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

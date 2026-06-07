@@ -75,3 +75,55 @@ test("card viewer works", async ({ page }) => {
   await expect(dialog).toBeVisible();
   await expect(dialog.getByText("by Ayo")).toBeVisible();
 });
+
+test("delete asks for confirmation", async ({ page }) => {
+  await page.evaluate(() => {
+    localStorage.setItem("favorite_photo_memories_v1", JSON.stringify([
+      {
+        id: "one",
+        name: "Ayo",
+        caption: "First favorite",
+        photo: null,
+        ts: Date.now()
+      },
+      {
+        id: "two",
+        name: "guest",
+        caption: "Guest favorite",
+        photo: null,
+        ts: Date.now()
+      }
+    ]));
+  });
+  await page.reload();
+  await page.evaluate(() => {
+    document.body.classList.remove("is-loading");
+    document.getElementById("loading")?.classList.add("hidden");
+  });
+
+  page.once("dialog", async dialog => {
+    expect(dialog.message()).toContain("Delete Ayo's memory?");
+    await dialog.dismiss();
+  });
+  await page.locator(".polaroid-wrap").first().hover();
+  await page.getByRole("button", { name: "Delete memory by Ayo" }).click();
+  await expect(page.getByText("First favorite")).toBeVisible();
+  await expect(page.locator("#toast")).toHaveText("Memory kept.");
+
+  page.once("dialog", async dialog => {
+    expect(dialog.message()).toContain("Delete Ayo's memory?");
+    await dialog.accept();
+  });
+  await page.locator(".polaroid-wrap").first().hover();
+  await page.getByRole("button", { name: "Delete memory by Ayo" }).click();
+  await expect(page.getByText("First favorite")).toBeHidden();
+  await expect(page.locator("#toast")).toHaveText("Memory deleted.");
+
+  page.once("dialog", async dialog => {
+    expect(dialog.message()).toContain("Delete this memory?");
+    await dialog.dismiss();
+  });
+  await page.locator(".polaroid-wrap").first().hover();
+  await page.getByRole("button", { name: "Delete memory by guest" }).click();
+  await expect(page.getByText("Guest favorite")).toBeVisible();
+});

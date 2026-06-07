@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Photo wall icon">
+  <rect width="64" height="64" rx="14" fill="#4d7f43"/>
+  <path d="M18 12h28a4 4 0 0 1 4 4v33a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4Z" fill="#fffaf1"/>
+  <path d="M21 19h22v20H21z" fill="#9fc8de"/>
+  <path d="M21 39h22l-7.5-9-5 6-3.5-4.5L21 39Z" fill="#4d7f43"/>
+  <circle cx="39" cy="24" r="3" fill="#d6a748"/>
+  <path d="M23 46h18" stroke="#9f8a64" stroke-width="3" stroke-linecap="round"/>
+</svg>
