@@ -87,8 +87,6 @@ button {
 
 .is-loading .page,
 .is-loading .quick-add,
-.is-loading .shuffle-btn,
-.is-loading .memory-counter,
 .is-loading .made-by {
   opacity: 0;
   pointer-events: none;
@@ -313,46 +311,6 @@ button {
 .delete-btn:hover {
   transform: scale(1.08);
   background: rgba(83, 81, 76, 0.96);
-}
-
-.memory-counter {
-  position: fixed;
-  left: 50%;
-  bottom: 1.25rem;
-  z-index: 90;
-  transform: translateX(-50%);
-  padding: 0.48rem 0.78rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.34);
-  background: rgba(43, 71, 93, 0.58);
-  color: rgba(247, 251, 255, 0.78);
-  font-size: 0.78rem;
-  font-weight: 400;
-  box-shadow: 0 10px 24px rgba(15, 34, 49, 0.18);
-  backdrop-filter: blur(10px);
-}
-
-.shuffle-btn {
-  position: fixed;
-  left: clamp(1rem, 4vw, 2rem);
-  bottom: clamp(1rem, 4vw, 2rem);
-  z-index: 120;
-  min-height: 44px;
-  padding: 0 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.82);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  color: #17364b;
-  font-size: 0.92rem;
-  font-weight: 700;
-  box-shadow: 0 12px 26px rgba(15, 34, 49, 0.18);
-  backdrop-filter: blur(12px);
-  transition: transform 0.14s ease, background 0.14s ease;
-}
-
-.shuffle-btn:hover {
-  transform: translateY(-2px);
-  background: #fff;
 }
 
 .made-by {
@@ -669,20 +627,9 @@ button {
     pointer-events: auto;
   }
 
-  .memory-counter {
-    display: none !important;
-  }
-
-  .shuffle-btn {
-    left: 1rem;
-    bottom: 1rem;
-    min-height: 42px;
-    padding: 0 0.9rem;
-  }
-
   .made-by {
     right: 1rem;
-    bottom: 1.7rem;
+    bottom: 1rem;
     font-size: 0.72rem;
   }
 }
@@ -720,8 +667,6 @@ button {
   </section>
 </main>
 
-<button class="shuffle-btn" id="shuffle-btn" type="button" hidden>Shuffle</button>
-<div class="memory-counter" id="memory-counter" hidden></div>
 <a class="made-by" href="https://vibe-coding.vercel.app/" target="_blank" rel="noopener noreferrer">Made by Mars</a>
 
 <div class="viewer-backdrop" id="viewer-backdrop" aria-hidden="true">
@@ -752,8 +697,6 @@ let dragState = null;
 
 const board = document.getElementById("board");
 const emptyHint = document.getElementById("empty-hint");
-const counter = document.getElementById("memory-counter");
-const shuffleBtn = document.getElementById("shuffle-btn");
 const viewer = document.getElementById("viewer-backdrop");
 const viewerPhoto = document.getElementById("viewer-photo");
 const viewerTitle = document.getElementById("viewer-title");
@@ -779,7 +722,6 @@ window.addEventListener("resize", debounce(() => {
 }, 160));
 
 quickAddForm.addEventListener("submit", prepareMemory);
-shuffleBtn.addEventListener("click", shuffleLayout);
 viewerCloseBtn.addEventListener("click", closeViewer);
 photoInput.addEventListener("change", handlePhoto);
 
@@ -918,16 +860,11 @@ function renderMemories() {
   emptyHint.style.display = memories.length ? "none" : "block";
 
   if (!memories.length) {
-    counter.hidden = true;
-    shuffleBtn.hidden = true;
     board.style.minHeight = "460px";
     return;
   }
 
   const count = memories.length;
-  counter.hidden = false;
-  shuffleBtn.hidden = false;
-  counter.textContent = `${count} ${count === 1 ? "photo" : "photos"} hanging`;
   pruneLayout();
 
   const cols = getColumnCount(count);
@@ -1007,24 +944,6 @@ function pruneLayout() {
     }
   });
   if (changed) saveLayout();
-}
-
-function shuffleLayout() {
-  const cols = getColumnCount(memories.length);
-  const seed = Date.now();
-  layoutPositions = {};
-  memories.forEach((memory, index) => {
-    const random = seededRand(hashString(memory.id + seed));
-    const colWidth = 100 / cols;
-    layoutPositions[memory.id] = {
-      x: Math.min((index % cols) * colWidth + random() * colWidth * 0.58 + colWidth * 0.06, getMaxXPercent()),
-      y: Math.floor(index / cols) * 235 + 80 + random() * 82
-    };
-  });
-  saveLayout();
-  renderMemories();
-  announce("Layout shuffled.");
-  showToast("Layout shuffled.");
 }
 
 function startDrag(event) {

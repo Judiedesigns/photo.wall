@@ -28,7 +28,6 @@ test("add flow is usable on the viewport", async ({ page }) => {
   await fileChooser.setFiles("bg-2.jpg");
 
   await expect(page.getByText("A small favorite from today.")).toBeVisible();
-  await expect(page.getByRole("button", { name: "Shuffle" })).toBeVisible();
 
   const cardBox = await page.locator(".polaroid-wrap").first().boundingBox();
   const viewport = page.viewportSize();
@@ -46,7 +45,7 @@ test("add flow uses defaults when text fields are empty", async ({ page }) => {
   await expect(page.getByText("by guest")).toBeVisible();
 });
 
-test("shuffle and card viewer work", async ({ page }) => {
+test("card viewer works", async ({ page }) => {
   await page.evaluate(() => {
     localStorage.setItem("favorite_photo_memories_v1", JSON.stringify([
       {
@@ -71,10 +70,8 @@ test("shuffle and card viewer work", async ({ page }) => {
     document.getElementById("loading")?.classList.add("hidden");
   });
 
-  await page.getByRole("button", { name: "Shuffle" }).click();
-  await expect(page.getByText("Layout shuffled.")).toBeVisible();
-
   await page.getByText("First favorite").click();
-  await expect(page.getByRole("dialog", { name: "A favorite photo" })).toBeVisible();
-  await expect(page.getByText("by Ayo")).toBeVisible();
+  const dialog = page.getByRole("dialog", { name: "A favorite photo" });
+  await expect(dialog).toBeVisible();
+  await expect(dialog.getByText("by Ayo")).toBeVisible();
 });
