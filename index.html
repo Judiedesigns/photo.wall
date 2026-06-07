@@ -204,21 +204,6 @@ button {
   padding: 2rem clamp(1rem, 4vw, 3rem) 6rem;
 }
 
-.empty-hint {
-  position: absolute;
-  top: 4rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(28rem, calc(100% - 2rem));
-  padding: 1rem 1.2rem;
-  border-radius: 999px;
-  background: rgba(255, 250, 241, 0.75);
-  color: var(--leaf-dark);
-  text-align: center;
-  box-shadow: 0 10px 34px rgba(20, 39, 28, 0.14);
-  backdrop-filter: blur(10px);
-}
-
 .polaroid-wrap {
   position: absolute;
   width: 184px;
@@ -608,13 +593,6 @@ button {
     padding-top: 1.5rem;
   }
 
-  .empty-hint {
-    position: static;
-    transform: none;
-    order: -1;
-    margin: 1rem auto;
-  }
-
   .polaroid-wrap {
     width: 156px;
   }
@@ -677,9 +655,7 @@ button {
   </form>
 
   <section aria-label="Favorite photo board">
-    <div class="board" id="board">
-      <p class="empty-hint" id="empty-hint">Be the first to hang a favorite photo.</p>
-    </div>
+    <div class="board" id="board"></div>
   </section>
 </main>
 
@@ -712,7 +688,6 @@ let toastTimer = null;
 let dragState = null;
 
 const board = document.getElementById("board");
-const emptyHint = document.getElementById("empty-hint");
 const viewer = document.getElementById("viewer-backdrop");
 const viewerPhoto = document.getElementById("viewer-photo");
 const viewerTitle = document.getElementById("viewer-title");
@@ -873,7 +848,6 @@ function compressPhoto(file, callback) {
 
 function renderMemories() {
   board.querySelectorAll(".polaroid-wrap").forEach(item => item.remove());
-  emptyHint.style.display = memories.length ? "none" : "block";
 
   if (!memories.length) {
     board.style.minHeight = "460px";
