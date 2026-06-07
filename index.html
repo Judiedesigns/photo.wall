@@ -86,7 +86,7 @@ button {
 }
 
 .is-loading .page,
-.is-loading .add-fab,
+.is-loading .quick-add,
 .is-loading .shuffle-btn,
 .is-loading .memory-counter {
   opacity: 0;
@@ -102,7 +102,7 @@ button {
 
 .header-title {
   font-family: "Caveat", cursive;
-  font-size: clamp(3.2rem, 10vw, 6.4rem);
+  font-size: clamp(3.1rem, 8.4vw, 5.7rem);
   font-weight: 700;
   color: #fff;
   line-height: 1;
@@ -120,6 +120,66 @@ button {
   line-height: 1.55;
   color: rgba(255, 253, 244, 0.9);
   text-shadow: 0 2px 12px rgba(14, 40, 24, 0.45);
+}
+
+.quick-add {
+  width: min(980px, calc(100% - 2rem));
+  margin: 0 auto 0.75rem;
+  display: grid;
+  grid-template-columns: minmax(160px, 0.75fr) minmax(260px, 1.45fr) minmax(170px, auto);
+  gap: 0.8rem;
+  align-items: center;
+  transition: opacity 0.2s ease;
+}
+
+.quick-input {
+  width: 100%;
+  height: 54px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 999px;
+  padding: 0 1.55rem;
+  background: rgba(59, 87, 110, 0.44);
+  color: #f7fbff;
+  outline: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 10px 22px rgba(15, 34, 49, 0.12);
+  backdrop-filter: blur(10px);
+  transition: border-color 0.16s ease, background 0.16s ease, box-shadow 0.16s ease;
+}
+
+.quick-input::placeholder {
+  color: rgba(245, 249, 252, 0.74);
+}
+
+.quick-input:focus {
+  border-color: rgba(255, 255, 255, 0.68);
+  background: rgba(59, 87, 110, 0.58);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 0 0 3px rgba(255, 255, 255, 0.12), 0 10px 22px rgba(15, 34, 49, 0.14);
+}
+
+.quick-add-btn {
+  height: 54px;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 999px;
+  padding: 0 1.65rem;
+  background: rgba(255, 255, 255, 0.94);
+  color: #17364b;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  box-shadow: 0 16px 32px rgba(15, 34, 49, 0.2);
+  transition: transform 0.14s ease, background 0.14s ease, box-shadow 0.14s ease;
+}
+
+.quick-add-btn:hover {
+  transform: translateY(-2px);
+  background: #fff;
+  box-shadow: 0 18px 34px rgba(15, 34, 49, 0.25);
+}
+
+.quick-add-btn:active {
+  transform: translateY(0) scale(0.98);
 }
 
 .board {
@@ -254,33 +314,6 @@ button {
   background: rgba(83, 81, 76, 0.96);
 }
 
-.add-fab {
-  position: fixed;
-  right: clamp(1rem, 4vw, 2rem);
-  bottom: clamp(1rem, 4vw, 2rem);
-  z-index: 120;
-  width: 64px;
-  height: 64px;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 50%;
-  background: rgba(255, 250, 241, 0.92);
-  color: var(--leaf-dark);
-  font-size: 2.25rem;
-  line-height: 1;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(12px);
-  transition: transform 0.14s ease, background 0.14s ease;
-}
-
-.add-fab:hover {
-  transform: translateY(-3px);
-  background: #fffaf1;
-}
-
-.add-fab:active {
-  transform: scale(0.96);
-}
-
 .memory-counter {
   position: fixed;
   left: 50%;
@@ -289,10 +322,11 @@ button {
   transform: translateX(-50%);
   padding: 0.65rem 1rem;
   border-radius: 999px;
-  background: rgba(28, 55, 35, 0.68);
-  color: #fffaf1;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  background: rgba(43, 71, 93, 0.58);
+  color: #f7fbff;
   font-size: 0.95rem;
-  box-shadow: 0 10px 28px rgba(20, 39, 28, 0.24);
+  box-shadow: 0 10px 24px rgba(15, 34, 49, 0.18);
   backdrop-filter: blur(10px);
 }
 
@@ -303,23 +337,23 @@ button {
   z-index: 120;
   min-height: 44px;
   padding: 0 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.82);
   border-radius: 999px;
-  background: rgba(255, 250, 241, 0.9);
-  color: var(--leaf-dark);
+  background: rgba(255, 255, 255, 0.92);
+  color: #17364b;
   font-size: 0.92rem;
   font-weight: 700;
-  box-shadow: 0 10px 28px rgba(20, 39, 28, 0.2);
+  box-shadow: 0 12px 26px rgba(15, 34, 49, 0.18);
   backdrop-filter: blur(12px);
   transition: transform 0.14s ease, background 0.14s ease;
 }
 
 .shuffle-btn:hover {
   transform: translateY(-2px);
-  background: #fffaf1;
+  background: #fff;
 }
 
-.modal-backdrop,
+.viewer-backdrop,
 .loading-overlay {
   position: fixed;
   inset: 0;
@@ -331,13 +365,13 @@ button {
   backdrop-filter: blur(12px);
 }
 
-.modal-backdrop {
+.viewer-backdrop {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
 }
 
-.modal-backdrop.open {
+.viewer-backdrop.open {
   opacity: 1;
   pointer-events: auto;
   background: rgba(92, 92, 88, 0.5);
@@ -381,37 +415,8 @@ button {
   color: #6f6d69;
 }
 
-.modal-backdrop.open .modal {
+.viewer-backdrop.open .modal {
   transform: translateY(0) scale(1);
-}
-
-.progress-dots {
-  display: flex;
-  justify-content: flex-start;
-  gap: 0.45rem;
-  margin-bottom: 1.35rem;
-}
-
-.progress-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #c8c8c2;
-  transition: width 0.16s ease, background 0.16s ease;
-}
-
-.progress-dot.active {
-  width: 26px;
-  border-radius: 999px;
-  background: #8d8b84;
-}
-
-.step {
-  display: none;
-}
-
-.step.active {
-  display: block;
 }
 
 .modal-title {
@@ -433,131 +438,6 @@ button {
   line-height: 1.38;
   font-size: clamp(1rem, 1.7vw, 1.18rem);
   font-weight: 700;
-}
-
-.modal-input,
-.modal-textarea {
-  width: 100%;
-  border: 1px solid #d8d5cd;
-  border-radius: 0;
-  background: rgba(255, 255, 252, 0.7);
-  color: #595753;
-  outline: 0;
-  box-shadow: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-}
-
-.modal-input::placeholder,
-.modal-textarea::placeholder {
-  color: #aaa8a4;
-}
-
-.modal-input {
-  height: 44px;
-  padding: 0 0.9rem;
-  text-align: left;
-  font-size: 0.98rem;
-}
-
-.modal-textarea {
-  min-height: 104px;
-  resize: vertical;
-  padding: 0.9rem 1rem;
-  line-height: 1.5;
-}
-
-.modal-input:focus,
-.modal-textarea:focus {
-  border-color: #96938c;
-  background: #fffefb;
-  box-shadow: 0 0 0 2px rgba(150, 147, 140, 0.12);
-}
-
-.photo-drop {
-  display: grid;
-  place-items: center;
-  min-height: 132px;
-  border: 1px dashed #ccc9c1;
-  border-radius: 0;
-  background: rgba(255, 255, 252, 0.58);
-  color: #8d8b84;
-  text-align: center;
-  font-size: 0.95rem;
-}
-
-.photo-drop.has-photo {
-  padding: 0;
-  border-style: solid;
-  overflow: hidden;
-  background: #fcfbf7;
-}
-
-.photo-drop img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
-}
-
-.photo-btn,
-.ghost-btn,
-.primary-btn {
-  min-height: 40px;
-  border-radius: 0;
-  padding: 0 1.25rem;
-  transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.14s ease;
-}
-
-.photo-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0.9rem;
-  border: 1px solid #d8d5cd;
-  background: transparent;
-  color: #696763;
-  box-shadow: none;
-}
-
-.photo-btn:hover,
-.ghost-btn:hover,
-.primary-btn:hover {
-  transform: none;
-  background: #f3f1ec;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-top: 1.75rem;
-}
-
-.ghost-btn {
-  border: 1px solid #d8d5cd;
-  background: transparent;
-  color: #696763;
-}
-
-.primary-btn {
-  border: 1px solid #817e76;
-  background: #817e76;
-  color: #fffdf8;
-  min-width: 120px;
-  box-shadow: none;
-}
-
-.primary-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.error-text {
-  min-height: 1.2rem;
-  margin-top: 0.8rem;
-  color: #9b3428;
-  text-align: center;
-  font-size: 0.85rem;
 }
 
 .viewer-modal {
@@ -675,14 +555,27 @@ button {
     padding-top: 2.25rem;
   }
 
+  .quick-add {
+    width: min(430px, calc(100% - 1.25rem));
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .quick-input,
+  .quick-add-btn {
+    height: 50px;
+    font-size: 0.98rem;
+  }
+
+  .quick-input {
+    padding: 0 1.3rem;
+  }
+
   .modal {
     min-height: 0;
     padding: 1.85rem 1.25rem 1.35rem;
     width: min(430px, calc(100% - 1.25rem));
-  }
-
-  .progress-dots {
-    margin-bottom: 1.2rem;
   }
 
   .modal-title {
@@ -694,20 +587,8 @@ button {
     margin-bottom: 1.3rem;
   }
 
-  .modal-input {
-    font-size: 0.95rem;
-  }
-
-  .modal-textarea {
-    font-size: 1rem;
-  }
-
   .viewer-modal {
     padding: 1.75rem 1.25rem 1.35rem;
-  }
-
-  .modal-actions {
-    margin-top: 1.35rem;
   }
 
   .board {
@@ -783,6 +664,15 @@ button {
     <p class="header-sub">A quiet place to keep the moments, faces, and small details you want to remember.</p>
   </header>
 
+  <form class="quick-add" id="quick-add" aria-label="Add a memory">
+    <label class="sr-only" for="memory-name">Your name</label>
+    <input class="quick-input" id="memory-name" type="text" maxlength="30" autocomplete="given-name" placeholder="Your name">
+    <label class="sr-only" for="memory-caption">Why is this special?</label>
+    <input class="quick-input" id="memory-caption" type="text" maxlength="120" placeholder="Why is this special?">
+    <input class="sr-only" id="memory-photo" type="file" accept="image/*">
+    <button class="quick-add-btn" id="quick-add-btn" type="submit">+ Add Memory</button>
+  </form>
+
   <section aria-label="Favorite photo board">
     <div class="board" id="board">
       <p class="empty-hint" id="empty-hint">Be the first to hang a favorite photo.</p>
@@ -790,53 +680,10 @@ button {
   </section>
 </main>
 
-<button class="add-fab" id="add-fab" type="button" aria-label="Hang a photo">+</button>
 <button class="shuffle-btn" id="shuffle-btn" type="button" hidden>Shuffle</button>
 <div class="memory-counter" id="memory-counter" hidden></div>
 
-<div class="modal-backdrop" id="modal-backdrop" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
-    <div class="progress-dots" aria-hidden="true">
-      <span class="progress-dot"></span>
-      <span class="progress-dot"></span>
-      <span class="progress-dot"></span>
-    </div>
-
-    <div class="step" data-step="0">
-      <h2 class="modal-title" id="modal-title">Who is this from?</h2>
-      <p class="modal-sub">Add your name so the photo knows where it came from.</p>
-      <label class="sr-only" for="memory-name">Your name</label>
-      <input class="modal-input" id="memory-name" type="text" maxlength="30" autocomplete="given-name" placeholder="Your name">
-    </div>
-
-    <div class="step" data-step="1">
-      <h2 class="modal-title">Add a photo</h2>
-      <p class="modal-sub">Choose one from your device, or keep it text-only.</p>
-      <div class="photo-drop" id="photo-preview">
-        <span id="photo-placeholder">No photo selected</span>
-      </div>
-      <label class="photo-btn" for="memory-photo" tabindex="0">Choose Photo</label>
-      <input class="sr-only" id="memory-photo" type="file" accept="image/*">
-    </div>
-
-    <div class="step" data-step="2">
-      <h2 class="modal-title">Why is it special?</h2>
-      <p class="modal-sub">Write the line you want to remember later.</p>
-      <label class="sr-only" for="memory-caption">Photo note</label>
-      <textarea class="modal-textarea" id="memory-caption" maxlength="120" placeholder="Write a note..."></textarea>
-    </div>
-
-    <p class="error-text" id="modal-error" role="alert"></p>
-
-    <div class="modal-actions">
-      <button class="ghost-btn" id="back-btn" type="button">Back</button>
-      <button class="primary-btn" id="next-btn" type="button">Next</button>
-    </div>
-  </div>
-</div>
-
-<div class="modal-backdrop" id="viewer-backdrop" aria-hidden="true">
+<div class="viewer-backdrop" id="viewer-backdrop" aria-hidden="true">
   <div class="modal viewer-modal" role="dialog" aria-modal="true" aria-labelledby="viewer-title">
     <button class="modal-close" id="viewer-close" type="button" aria-label="Close">&times;</button>
     <div class="viewer-photo" id="viewer-photo"></div>
@@ -858,7 +705,6 @@ const MOBILE_CARD_WIDTH = 156;
 
 let memories = [];
 let layoutPositions = {};
-let step = 0;
 let draftPhoto = null;
 let toastTimer = null;
 let dragState = null;
@@ -867,22 +713,15 @@ const board = document.getElementById("board");
 const emptyHint = document.getElementById("empty-hint");
 const counter = document.getElementById("memory-counter");
 const shuffleBtn = document.getElementById("shuffle-btn");
-const modal = document.getElementById("modal-backdrop");
 const viewer = document.getElementById("viewer-backdrop");
 const viewerPhoto = document.getElementById("viewer-photo");
 const viewerTitle = document.getElementById("viewer-title");
 const viewerCaption = document.getElementById("viewer-caption");
 const viewerAuthor = document.getElementById("viewer-author");
-const steps = Array.from(document.querySelectorAll(".step"));
-const dots = Array.from(document.querySelectorAll(".progress-dot"));
+const quickAddForm = document.getElementById("quick-add");
 const nameInput = document.getElementById("memory-name");
 const photoInput = document.getElementById("memory-photo");
-const photoPreview = document.getElementById("photo-preview");
 const captionInput = document.getElementById("memory-caption");
-const errorEl = document.getElementById("modal-error");
-const backBtn = document.getElementById("back-btn");
-const nextBtn = document.getElementById("next-btn");
-const closeBtn = document.getElementById("modal-close");
 const viewerCloseBtn = document.getElementById("viewer-close");
 
 window.addEventListener("load", () => {
@@ -898,17 +737,10 @@ window.addEventListener("resize", debounce(() => {
   renderMemories();
 }, 160));
 
-document.getElementById("add-fab").addEventListener("click", openModal);
+quickAddForm.addEventListener("submit", prepareMemory);
 shuffleBtn.addEventListener("click", shuffleLayout);
-backBtn.addEventListener("click", goBack);
-nextBtn.addEventListener("click", goNext);
-closeBtn.addEventListener("click", closeModal);
 viewerCloseBtn.addEventListener("click", closeViewer);
 photoInput.addEventListener("change", handlePhoto);
-
-modal.addEventListener("click", event => {
-  if (event.target === modal) closeModal();
-});
 
 viewer.addEventListener("click", event => {
   if (event.target === viewer) closeViewer();
@@ -918,15 +750,6 @@ document.addEventListener("keydown", event => {
   if (viewer.classList.contains("open") && event.key === "Escape") {
     closeViewer();
     return;
-  }
-  if (!modal.classList.contains("open")) return;
-  if (event.key === "Escape") {
-    closeModal();
-    return;
-  }
-  if (event.key === "Enter" && event.target !== captionInput) {
-    event.preventDefault();
-    goNext();
   }
 });
 
@@ -966,25 +789,6 @@ function saveLayout() {
   localStorage.setItem(LAYOUT_STORAGE_KEY, JSON.stringify(layoutPositions));
 }
 
-function openModal() {
-  step = 0;
-  draftPhoto = null;
-  nameInput.value = "";
-  captionInput.value = "";
-  photoInput.value = "";
-  resetPhotoPreview();
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-  updateStep();
-  setTimeout(() => nameInput.focus(), 120);
-}
-
-function closeModal() {
-  modal.classList.remove("open");
-  modal.setAttribute("aria-hidden", "true");
-  errorEl.textContent = "";
-}
-
 function openViewer(memory) {
   viewerPhoto.classList.toggle("is-empty", !memory.photo);
   viewerPhoto.innerHTML = memory.photo
@@ -1003,55 +807,16 @@ function closeViewer() {
   viewer.setAttribute("aria-hidden", "true");
 }
 
-function updateStep() {
-  steps.forEach((item, index) => item.classList.toggle("active", index === step));
-  dots.forEach((dot, index) => dot.classList.toggle("active", index === step));
-  backBtn.textContent = step === 0 ? "Cancel" : "Back";
-  nextBtn.textContent = step === 2 ? "Hang photo" : "Next";
-  errorEl.textContent = "";
-}
-
-function goBack() {
-  if (step === 0) {
-    closeModal();
-    return;
-  }
-  step -= 1;
-  updateStep();
-  focusCurrentStep();
-}
-
-function goNext() {
-  if (step === 0 && !nameInput.value.trim()) {
-    showError("Add your name first.");
-    nameInput.focus();
-    return;
-  }
-  if (step < 2) {
-    step += 1;
-    updateStep();
-    focusCurrentStep();
-    return;
-  }
-  submitMemory();
-}
-
-function focusCurrentStep() {
-  setTimeout(() => {
-    if (step === 0) nameInput.focus();
-    if (step === 1) document.querySelector(".photo-btn").focus();
-    if (step === 2) captionInput.focus();
-  }, 80);
+function prepareMemory(event) {
+  event.preventDefault();
+  draftPhoto = null;
+  photoInput.value = "";
+  photoInput.click();
 }
 
 function submitMemory() {
-  const name = nameInput.value.trim();
-  const caption = captionInput.value.trim();
-  if (!caption) {
-    showError("Write why this memory is special.");
-    captionInput.focus();
-    return;
-  }
+  const name = nameInput.value.trim() || "guest";
+  const caption = captionInput.value.trim() || "favorite moment";
 
   memories.push({
     id: String(Date.now()) + Math.random().toString(16).slice(2),
@@ -1063,7 +828,10 @@ function submitMemory() {
 
   saveMemories();
   renderMemories();
-  closeModal();
+  nameInput.value = "";
+  captionInput.value = "";
+  photoInput.value = "";
+  draftPhoto = null;
   announce("Photo hung.");
   showToast("Photo hung.");
 }
@@ -1074,9 +842,7 @@ function handlePhoto() {
   showToast("Compressing photo...");
   compressPhoto(file, dataUrl => {
     draftPhoto = dataUrl;
-    photoPreview.classList.add("has-photo");
-    photoPreview.innerHTML = `<img src="${dataUrl}" alt="Selected memory preview">`;
-    showToast("Photo ready.");
+    submitMemory();
   });
 }
 
@@ -1104,11 +870,6 @@ function compressPhoto(file, callback) {
   };
   reader.onerror = () => showToast("Could not read that file.");
   reader.readAsDataURL(file);
-}
-
-function resetPhotoPreview() {
-  photoPreview.classList.remove("has-photo");
-  photoPreview.innerHTML = '<span id="photo-placeholder">No photo selected</span>';
 }
 
 function renderMemories() {
@@ -1183,7 +944,7 @@ function getDefaultPosition(memory, index, cols) {
   const colWidth = 100 / cols;
   return {
     x: Math.min((index % cols) * colWidth + random() * colWidth * 0.48 + colWidth * 0.08, getMaxXPercent()),
-    y: Math.floor(index / cols) * 235 + 35 + random() * 58
+    y: Math.floor(index / cols) * 235 + 85 + random() * 58
   };
 }
 
@@ -1216,7 +977,7 @@ function shuffleLayout() {
     const colWidth = 100 / cols;
     layoutPositions[memory.id] = {
       x: Math.min((index % cols) * colWidth + random() * colWidth * 0.58 + colWidth * 0.06, getMaxXPercent()),
-      y: Math.floor(index / cols) * 235 + 28 + random() * 82
+      y: Math.floor(index / cols) * 235 + 80 + random() * 82
     };
   });
   saveLayout();
@@ -1309,10 +1070,6 @@ function clampPosition(position) {
     x: clamp(Number(position.x) || 0, 0, getMaxXPercent()),
     y: Math.max(0, Number(position.y) || 0)
   };
-}
-
-function showError(message) {
-  errorEl.textContent = message;
 }
 
 function showToast(message) {
